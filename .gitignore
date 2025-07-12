@@ -1,0 +1,57 @@
+DerivedData/
+build/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcuserstate
+*.xcscmblueprint
+xcuserdata/
+
+# MARK: - macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# MARK: - Swift Package Manager
+.swiftpm/
+Package.resolved
+
+# MARK: - CocoaPods
+Pods/
+Podfile.lock
+
+# MARK: - Carthage
+Carthage/Build/
+
+# MARK: - Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/
+fastlane/test_output/
+
+# MARK: - Archives and Symbols
+*.xcarchive
+*.dSYM.zip
+*.dSYM
+
+# MARK: - Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# MARK: - IDE Settings
+.idea/
+*.iml
+
+# MARK: - Firebase or other secrets
+GoogleService-Info.plist
+.env
+
+# MARK: - XCFrameworks (if any)
+*.xcframework
+
+# MARK: - Misc
+*.swp
+*.swo
+*.orig
+*.log
