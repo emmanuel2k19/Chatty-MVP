@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		96622EA32E2A99C1000E7E53 /* GTMSessionFetcher in Frameworks */ = {isa = PBXBuildFile; productRef = 96622EA22E2A99C1000E7E53 /* GTMSessionFetcher */; };
+		96622EA52E2A99EC000E7E53 /* GTMSessionFetcherCore in Frameworks */ = {isa = PBXBuildFile; productRef = 96622EA42E2A99EC000E7E53 /* GTMSessionFetcherCore */; };
 		96B5F0EB2E1DFB3F00EC33ED /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 96B5F0EA2E1DFB3F00EC33ED /* FirebaseAuth */; };
 		96B5F0ED2E1DFB3F00EC33ED /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 96B5F0EC2E1DFB3F00EC33ED /* FirebaseCore */; };
 		96B5F0EF2E1DFB3F00EC33ED /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 96B5F0EE2E1DFB3F00EC33ED /* FirebaseFirestore */; };
@@ -44,6 +46,8 @@
 			files = (
 				96B5F0ED2E1DFB3F00EC33ED /* FirebaseCore in Frameworks */,
 				96B5F0EB2E1DFB3F00EC33ED /* FirebaseAuth in Frameworks */,
+				96622EA52E2A99EC000E7E53 /* GTMSessionFetcherCore in Frameworks */,
+				96622EA32E2A99C1000E7E53 /* GTMSessionFetcher in Frameworks */,
 				96B5F0EF2E1DFB3F00EC33ED /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -90,6 +94,8 @@
 				96B5F0EA2E1DFB3F00EC33ED /* FirebaseAuth */,
 				96B5F0EC2E1DFB3F00EC33ED /* FirebaseCore */,
 				96B5F0EE2E1DFB3F00EC33ED /* FirebaseFirestore */,
+				96622EA22E2A99C1000E7E53 /* GTMSessionFetcher */,
+				96622EA42E2A99EC000E7E53 /* GTMSessionFetcherCore */,
 			);
 			productName = Chatty;
 			productReference = 96CC5B972E1C58FC00D09AEE /* Chatty.app */;
@@ -121,6 +127,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				96CC5BC52E1C5D9200D09AEE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				96622EA12E2A99C1000E7E53 /* XCRemoteSwiftPackageReference "gtm-session-fetcher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 96CC5B982E1C58FC00D09AEE /* Products */;
@@ -167,6 +174,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -176,7 +184,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -194,6 +202,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -203,7 +212,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -259,7 +268,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -316,7 +325,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -350,6 +359,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		96622EA12E2A99C1000E7E53 /* XCRemoteSwiftPackageReference "gtm-session-fetcher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/gtm-session-fetcher.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		96CC5BC52E1C5D9200D09AEE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -361,6 +378,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		96622EA22E2A99C1000E7E53 /* GTMSessionFetcher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 96622EA12E2A99C1000E7E53 /* XCRemoteSwiftPackageReference "gtm-session-fetcher" */;
+			productName = GTMSessionFetcher;
+		};
+		96622EA42E2A99EC000E7E53 /* GTMSessionFetcherCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 96622EA12E2A99C1000E7E53 /* XCRemoteSwiftPackageReference "gtm-session-fetcher" */;
+			productName = GTMSessionFetcherCore;
+		};
 		96B5F0EA2E1DFB3F00EC33ED /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 96CC5BC52E1C5D9200D09AEE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

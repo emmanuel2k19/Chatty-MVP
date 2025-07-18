@@ -18,75 +18,38 @@ struct Conversation {
 }
 
 class MessagesListViewController: UIViewController {
-    
+    let messagesListView = MessagesListView()
     let tableView = UITableView()
     var conversations: [Conversation] = []
 
-    let emailField = UITextField()
-    let messageField = UITextField()
-    let sendButton = UIButton(type: .system)
-
+    override func loadView() {
+        self.view = messagesListView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Messages"
+        setupDelegates()
+        setupActions()
         view.backgroundColor = .white
-        setupUI()
         loadConversations()
     }
 
-    func setupUI() {
-        emailField.placeholder = "Recipient's email"
-        emailField.borderStyle = .roundedRect
-        emailField.translatesAutoresizingMaskIntoConstraints = false
-        emailField.delegate = self
-        
-        messageField.placeholder = "Message"
-        messageField.borderStyle = .roundedRect
-        messageField.translatesAutoresizingMaskIntoConstraints = false
-
-        sendButton.setTitle("Send", for: .normal)
-        sendButton.setTitleColor(.white, for: .normal)
-        sendButton.backgroundColor = .systemBlue
-        sendButton.layer.cornerRadius = 8
-        sendButton.translatesAutoresizingMaskIntoConstraints = false
-        sendButton.addTarget(self, action: #selector(sendPressed), for: .touchUpInside)
-
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.dataSource = self
-        tableView.delegate = self
-        view.addSubview(emailField)
-        view.addSubview(messageField)
-        view.addSubview(sendButton)
-        view.addSubview(tableView)
-
-        NSLayoutConstraint.activate([
-            emailField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            emailField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            emailField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            emailField.heightAnchor.constraint(equalToConstant: 40),
-
-            messageField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: 8),
-            messageField.leadingAnchor.constraint(equalTo: emailField.leadingAnchor),
-            messageField.trailingAnchor.constraint(equalTo: emailField.trailingAnchor),
-            messageField.heightAnchor.constraint(equalToConstant: 40),
-
-            sendButton.topAnchor.constraint(equalTo: messageField.bottomAnchor, constant: 8),
-            sendButton.leadingAnchor.constraint(equalTo: emailField.leadingAnchor),
-            sendButton.trailingAnchor.constraint(equalTo: emailField.trailingAnchor),
-            sendButton.heightAnchor.constraint(equalToConstant: 44),
-
-            tableView.topAnchor.constraint(equalTo: sendButton.bottomAnchor, constant: 16),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+    private func setupDelegates() {
+        messagesListView.emailField.delegate = self
+        messagesListView.tableView.dataSource = self
+        messagesListView.tableView.delegate = self
     }
-
+    
+    private func setupActions() {
+        messagesListView.sendButton.addTarget(self, action: #selector(sendPressed), for: .touchUpInside)
+    }
+    
     // 🔥 SEND A MESSAGE TO A USER BY EMAIL
     @objc func sendPressed() {
         guard
-            let email = emailField.text?.lowercased(), !email.isEmpty,
-            let message = messageField.text, !message.isEmpty,
+            let email = messagesListView.emailField.text?.lowercased(), !email.isEmpty,
+            let message = messagesListView.messageField.text, !message.isEmpty,
             let currentUserID = Auth.auth().currentUser?.uid
         else { return }
 
@@ -129,7 +92,7 @@ class MessagesListViewController: UIViewController {
                 ])
 
                 DispatchQueue.main.async {
-                    self.messageField.text = ""
+                    self.messagesListView.messageField.text = ""
                     self.loadConversations() // Refresh messages list
                 }
             }
@@ -171,7 +134,7 @@ class MessagesListViewController: UIViewController {
                 }
 
                 group.notify(queue: .main) {
-                    self.tableView.reloadData()
+                    self.messagesListView.tableView.reloadData()
                 }
             }
     }
@@ -220,7 +183,7 @@ extension UITableView {
 
 extension MessagesListViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField == emailField {
+        if textField == messagesListView.emailField {
             let lowercaseString = string.lowercased()
             let currentText = textField.text ?? ""
             let newText = (currentText as NSString).replacingCharacters(in: range, with: lowercaseString)
