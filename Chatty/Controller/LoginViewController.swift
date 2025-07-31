@@ -6,6 +6,7 @@
 //
 import UIKit
 import FirebaseAuth
+import SVProgressHUD
 
 class LoginViewController: UIViewController {
     
@@ -26,22 +27,23 @@ class LoginViewController: UIViewController {
     }
 
     @objc private func handleLogin() {
-        guard let email = loginView.emailTextField.text, !email.isEmpty,
-              let password = loginView.passwordTextField.text, !password.isEmpty else {
-            print("❌ Email or password empty")
-            return
-        }
-
-        Auth.auth().signIn(withEmail: email, password: password) { result, error in
-            if let error = error {
-                print("❌ Login failed:", error.localizedDescription)
-            } else {
-                print("✅ Logged in as:", result?.user.email ?? "")
-                let messagesListVC = MessagesListViewController()
-                self.navigationController?.pushViewController(messagesListVC, animated: true)
+        
+        SVProgressHUD.show()
+        
+        Auth.auth().signIn(withEmail: loginView.emailTextField.text!, password: loginView.passwordTextField.text!) { (result, error) in
+            
+                if error != nil {
+                    print(error)
+                }else{
+                    print("Login Successful")
+                    SVProgressHUD.dismiss()
+                    
+                    let messagesVC = MessagesListViewController()
+                        self.navigationController?.pushViewController(messagesVC, animated: true)
+                }
             }
         }
-    }
+    
 
     @objc private func handleRegister() {
         let registerVC = RegisterViewController()

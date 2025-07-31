@@ -10,6 +10,7 @@ class RegisterView: UIView {
     
     var backgroundView = UIView()
     var titleLabel = UILabel()
+    var nameTextField = UITextField()          // <-- New
     var emailTextField = UITextField()
     var passwordTextField = UITextField()
     var registerButton = UIButton()
@@ -34,6 +35,12 @@ class RegisterView: UIView {
         titleLabel.font = UIFont.boldSystemFont(ofSize: 30)
         titleLabel.textColor = .white
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        nameTextField.placeholder = "Name"                  // <-- New
+        nameTextField.backgroundColor = .white
+        nameTextField.layer.cornerRadius = 8
+        nameTextField.autocapitalizationType = .words
+        nameTextField.translatesAutoresizingMaskIntoConstraints = false
         
         emailTextField.placeholder = "Email"
         emailTextField.keyboardType = .emailAddress
@@ -49,7 +56,7 @@ class RegisterView: UIView {
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         
         registerButton.setTitle("Create Account", for: .normal)
-        registerButton.backgroundColor = UIColor(named: "#25D366")
+        registerButton.backgroundColor = UIColor(named: "#25D366") ?? .systemGreen
         registerButton.setTitleColor(.white, for: .normal)
         registerButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
         registerButton.layer.cornerRadius = 8
@@ -57,16 +64,14 @@ class RegisterView: UIView {
         
         addSubview(backgroundView)
         addSubview(titleLabel)
+        addSubview(nameTextField)
         addSubview(emailTextField)
         addSubview(passwordTextField)
         addSubview(registerButton)
-        
     }
    
-    func applyConstraints(){
-        
+    func applyConstraints() {
         NSLayoutConstraint.activate([
-            
             backgroundView.topAnchor.constraint(equalTo: topAnchor),
             backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
             backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -74,11 +79,15 @@ class RegisterView: UIView {
             
             titleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 60),
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+
+            nameTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+            nameTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
+            nameTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
+            nameTextField.heightAnchor.constraint(equalToConstant: 44),
             
-            
-            emailTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
-            emailTextField.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 30),
-            emailTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
+            emailTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 20),  
+            emailTextField.leadingAnchor.constraint(equalTo: nameTextField.leadingAnchor),
+            emailTextField.trailingAnchor.constraint(equalTo: nameTextField.trailingAnchor),
             emailTextField.heightAnchor.constraint(equalToConstant: 44),
             
             passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20),
@@ -90,12 +99,6 @@ class RegisterView: UIView {
             registerButton.leadingAnchor.constraint(equalTo: emailTextField.leadingAnchor),
             registerButton.trailingAnchor.constraint(equalTo: emailTextField.trailingAnchor),
             registerButton.heightAnchor.constraint(equalToConstant: 50),
-        
         ])
     }
-    
-    
-    
 }
-
-

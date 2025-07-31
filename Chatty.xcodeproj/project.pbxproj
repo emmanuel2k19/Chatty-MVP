@@ -7,14 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9633A46B2E39160B00F64CC9 /* SVProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 9633A46A2E39160B00F64CC9 /* SVProgressHUD */; };
 		96622EA32E2A99C1000E7E53 /* GTMSessionFetcher in Frameworks */ = {isa = PBXBuildFile; productRef = 96622EA22E2A99C1000E7E53 /* GTMSessionFetcher */; };
 		96622EA52E2A99EC000E7E53 /* GTMSessionFetcherCore in Frameworks */ = {isa = PBXBuildFile; productRef = 96622EA42E2A99EC000E7E53 /* GTMSessionFetcherCore */; };
-		96B5F0EB2E1DFB3F00EC33ED /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 96B5F0EA2E1DFB3F00EC33ED /* FirebaseAuth */; };
-		96B5F0ED2E1DFB3F00EC33ED /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 96B5F0EC2E1DFB3F00EC33ED /* FirebaseCore */; };
-		96B5F0EF2E1DFB3F00EC33ED /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 96B5F0EE2E1DFB3F00EC33ED /* FirebaseFirestore */; };
+		96622EF92E2ADD78000E7E53 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 96622EF82E2ADD78000E7E53 /* FirebaseAnalytics */; };
+		96622EFB2E2ADD78000E7E53 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 96622EFA2E2ADD78000E7E53 /* FirebaseAuth */; };
+		96622EFD2E2ADD78000E7E53 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 96622EFC2E2ADD78000E7E53 /* FirebaseCore */; };
+		96622EFF2E2ADD78000E7E53 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 96622EFE2E2ADD78000E7E53 /* FirebaseFirestore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9633A4262E36944100F64CC9 /* CodeResources */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = CodeResources; path = "DerivedData/Chatty/SourcePackages/artifacts/grpc-binary/openssl_grpc/openssl_grpc.xcframework/_CodeSignature/CodeResources"; sourceTree = "<group>"; };
 		96CC5B972E1C58FC00D09AEE /* Chatty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -44,21 +47,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96B5F0ED2E1DFB3F00EC33ED /* FirebaseCore in Frameworks */,
-				96B5F0EB2E1DFB3F00EC33ED /* FirebaseAuth in Frameworks */,
 				96622EA52E2A99EC000E7E53 /* GTMSessionFetcherCore in Frameworks */,
+				96622EFD2E2ADD78000E7E53 /* FirebaseCore in Frameworks */,
 				96622EA32E2A99C1000E7E53 /* GTMSessionFetcher in Frameworks */,
-				96B5F0EF2E1DFB3F00EC33ED /* FirebaseFirestore in Frameworks */,
+				9633A46B2E39160B00F64CC9 /* SVProgressHUD in Frameworks */,
+				96622EF92E2ADD78000E7E53 /* FirebaseAnalytics in Frameworks */,
+				96622EFB2E2ADD78000E7E53 /* FirebaseAuth in Frameworks */,
+				96622EFF2E2ADD78000E7E53 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9633A4252E36944000F64CC9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9633A4262E36944100F64CC9 /* CodeResources */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		96CC5B8E2E1C58FC00D09AEE = {
 			isa = PBXGroup;
 			children = (
 				96CC5B992E1C58FC00D09AEE /* Chatty */,
+				9633A4252E36944000F64CC9 /* Frameworks */,
 				96CC5B982E1C58FC00D09AEE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -81,6 +95,8 @@
 				96CC5B932E1C58FC00D09AEE /* Sources */,
 				96CC5B942E1C58FC00D09AEE /* Frameworks */,
 				96CC5B952E1C58FC00D09AEE /* Resources */,
+				9633A4272E3694B300F64CC9 /* Run Script */,
+				9633A4282E3694F900F64CC9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -91,11 +107,13 @@
 			);
 			name = Chatty;
 			packageProductDependencies = (
-				96B5F0EA2E1DFB3F00EC33ED /* FirebaseAuth */,
-				96B5F0EC2E1DFB3F00EC33ED /* FirebaseCore */,
-				96B5F0EE2E1DFB3F00EC33ED /* FirebaseFirestore */,
 				96622EA22E2A99C1000E7E53 /* GTMSessionFetcher */,
 				96622EA42E2A99EC000E7E53 /* GTMSessionFetcherCore */,
+				96622EF82E2ADD78000E7E53 /* FirebaseAnalytics */,
+				96622EFA2E2ADD78000E7E53 /* FirebaseAuth */,
+				96622EFC2E2ADD78000E7E53 /* FirebaseCore */,
+				96622EFE2E2ADD78000E7E53 /* FirebaseFirestore */,
+				9633A46A2E39160B00F64CC9 /* SVProgressHUD */,
 			);
 			productName = Chatty;
 			productReference = 96CC5B972E1C58FC00D09AEE /* Chatty.app */;
@@ -126,8 +144,9 @@
 			mainGroup = 96CC5B8E2E1C58FC00D09AEE;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				96CC5BC52E1C5D9200D09AEE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				96622EA12E2A99C1000E7E53 /* XCRemoteSwiftPackageReference "gtm-session-fetcher" */,
+				96622EF72E2ADD78000E7E53 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				9633A4692E39160B00F64CC9 /* XCRemoteSwiftPackageReference "SVProgressHUD" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 96CC5B982E1C58FC00D09AEE /* Products */;
@@ -148,6 +167,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9633A4272E3694B300F64CC9 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+		9633A4282E3694F900F64CC9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				openssl_grpc.framework,
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		96CC5B932E1C58FC00D09AEE /* Sources */ = {
@@ -174,7 +232,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -202,7 +260,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -359,6 +417,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		9633A4692E39160B00F64CC9 /* XCRemoteSwiftPackageReference "SVProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SVProgressHUD/SVProgressHUD";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.1;
+			};
+		};
 		96622EA12E2A99C1000E7E53 /* XCRemoteSwiftPackageReference "gtm-session-fetcher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/gtm-session-fetcher.git";
@@ -367,17 +433,22 @@
 				kind = branch;
 			};
 		};
-		96CC5BC52E1C5D9200D09AEE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		96622EF72E2ADD78000E7E53 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 11.15.0;
+				minimumVersion = 12.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		9633A46A2E39160B00F64CC9 /* SVProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9633A4692E39160B00F64CC9 /* XCRemoteSwiftPackageReference "SVProgressHUD" */;
+			productName = SVProgressHUD;
+		};
 		96622EA22E2A99C1000E7E53 /* GTMSessionFetcher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 96622EA12E2A99C1000E7E53 /* XCRemoteSwiftPackageReference "gtm-session-fetcher" */;
@@ -388,19 +459,24 @@
 			package = 96622EA12E2A99C1000E7E53 /* XCRemoteSwiftPackageReference "gtm-session-fetcher" */;
 			productName = GTMSessionFetcherCore;
 		};
-		96B5F0EA2E1DFB3F00EC33ED /* FirebaseAuth */ = {
+		96622EF82E2ADD78000E7E53 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 96CC5BC52E1C5D9200D09AEE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 96622EF72E2ADD78000E7E53 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		96622EFA2E2ADD78000E7E53 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 96622EF72E2ADD78000E7E53 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
-		96B5F0EC2E1DFB3F00EC33ED /* FirebaseCore */ = {
+		96622EFC2E2ADD78000E7E53 /* FirebaseCore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 96CC5BC52E1C5D9200D09AEE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 96622EF72E2ADD78000E7E53 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCore;
 		};
-		96B5F0EE2E1DFB3F00EC33ED /* FirebaseFirestore */ = {
+		96622EFE2E2ADD78000E7E53 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 96CC5BC52E1C5D9200D09AEE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 96622EF72E2ADD78000E7E53 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */

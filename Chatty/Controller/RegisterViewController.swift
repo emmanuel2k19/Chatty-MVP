@@ -28,28 +28,34 @@ class RegisterViewController: UIViewController {
     
     
     @objc private func handleRegister() {
-        guard let email = registerView.emailTextField.text, !email.isEmpty,
+        guard let name = registerView.nameTextField.text, !name.isEmpty,
+              let email = registerView.emailTextField.text, !email.isEmpty,
               let password = registerView.passwordTextField.text, !password.isEmpty else {
             print("❌ Email or password empty")
             return
         }
         
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
-            if let error = error {
-                print("❌ Registration failed:", error.localizedDescription)
-            } else if let user = result?.user {
-                print("✅ User registered:", user.uid)
-                
-                // SAVE USER TO FIRESTORE
-                let db = Firestore.firestore()
-                db.collection("users").document(user.uid).setData([
-                    "email": email.lowercased()
-                ]) { error in
-                    if let error = error {
-                        print("❌ Failed to save user to Firestore:", error.localizedDescription)
-                    } else {
-                        print("✅ User saved to Firestore")
-                        
+            guard let user = result?.user, error == nil else {
+                print("Registration failed")
+                return
+            }
+
+            let changeRequest = user.createProfileChangeRequest()
+            changeRequest.displayName = name
+            changeRequest.commitChanges { error in
+                if error == nil {
+                    print("Display name set successfully")
+                }
+            }
+
+            // Optional: Also store in Firestore if you use Firestore
+            let db = Firestore.firestore()
+            db.collection("users").document(user.uid).setData([
+                "name": name,
+                "email": email
+            ])
+        }
                         // 🚀 Navigate to Messages screen
                         DispatchQueue.main.async {
                             let messagesListVC = MessagesListViewController()
@@ -57,7 +63,4 @@ class RegisterViewController: UIViewController {
                         }
                     }
                 }
-            }
-        }
-    }
-}
+            
