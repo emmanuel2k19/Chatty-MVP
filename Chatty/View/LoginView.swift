@@ -9,7 +9,7 @@ import UIKit
 class LoginView: UIView {
     
     // MARK: - UI Elements
-    let backgroundView = UIView()
+    let backgroundImageView = UIImageView()
     let titleLabel = UILabel()
     let emailTextField = UITextField()
     let passwordTextField = UITextField()
@@ -28,9 +28,10 @@ class LoginView: UIView {
 
     // MARK: - View Setup
     private func setUpView() {
-        backgroundView.backgroundColor = UIColor(red: 37/255, green: 211/255, blue: 102/255, alpha: 1)
-        backgroundView.translatesAutoresizingMaskIntoConstraints = false
-
+        backgroundImageView.image = UIImage(named: "Background")
+        backgroundImageView.contentMode = .scaleAspectFill
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        
         titleLabel.text = "Chatty"
         titleLabel.font = UIFont.boldSystemFont(ofSize: 34)
         titleLabel.textColor = .white
@@ -41,11 +42,13 @@ class LoginView: UIView {
         emailTextField.autocapitalizationType = .none
         emailTextField.backgroundColor = .white
         emailTextField.layer.cornerRadius = 8
+        emailTextField.textColor = .black
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
 
         passwordTextField.placeholder = "Password"
         passwordTextField.isSecureTextEntry = true
         passwordTextField.backgroundColor = .white
+        passwordTextField.textColor = .black
         passwordTextField.layer.cornerRadius = 8
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
 
@@ -62,7 +65,7 @@ class LoginView: UIView {
         registerButton.translatesAutoresizingMaskIntoConstraints = false
 
         // Add subviews
-        addSubview(backgroundView)
+        addSubview(backgroundImageView)
         addSubview(titleLabel)
         addSubview(emailTextField)
         addSubview(passwordTextField)
@@ -72,12 +75,12 @@ class LoginView: UIView {
 
     private func applyConstraints() {
         NSLayoutConstraint.activate([
-            backgroundView.topAnchor.constraint(equalTo: topAnchor),
-            backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            backgroundImageView.topAnchor.constraint(equalTo: topAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            backgroundImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            titleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 60),
+            titleLabel.topAnchor.constraint(equalTo:topAnchor, constant: 60),
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             emailTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 40),

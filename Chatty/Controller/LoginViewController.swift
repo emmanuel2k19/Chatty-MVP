@@ -27,23 +27,29 @@ class LoginViewController: UIViewController {
     }
 
     @objc private func handleLogin() {
-        
         SVProgressHUD.show()
         
-        Auth.auth().signIn(withEmail: loginView.emailTextField.text!, password: loginView.passwordTextField.text!) { (result, error) in
+        Auth.auth().signIn(withEmail: loginView.emailTextField.text ?? "",
+                           password: loginView.passwordTextField.text ?? "") { (result, error) in
             
-                if error != nil {
-                    print(error)
-                }else{
-                    print("Login Successful")
-                    SVProgressHUD.dismiss()
-                    
-                    let messagesVC = MessagesListViewController()
-                        self.navigationController?.pushViewController(messagesVC, animated: true)
-                }
+            if let error = error {
+                // Dismiss the HUD
+                SVProgressHUD.dismiss()
+                
+                print("Login failed: \(error.localizedDescription)")
+                
+                // Optional: Show an error HUD
+                SVProgressHUD.showError(withStatus: "Login failed")
+                
+            } else {
+                print("Login Successful")
+                SVProgressHUD.dismiss()
+                
+                let messagesVC = MessagesListViewController()
+                self.navigationController?.pushViewController(messagesVC, animated: true)
             }
         }
-    
+    }
 
     @objc private func handleRegister() {
         let registerVC = RegisterViewController()

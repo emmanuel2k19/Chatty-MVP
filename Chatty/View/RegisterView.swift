@@ -8,7 +8,7 @@ import UIKit
 
 class RegisterView: UIView {
     
-    var backgroundView = UIView()
+    var backgroundView = UIImageView()
     var titleLabel = UILabel()
     var nameTextField = UITextField()          // <-- New
     var emailTextField = UITextField()
@@ -28,7 +28,8 @@ class RegisterView: UIView {
     // MARK: - View Setup
     private func setUpView() {
         
-        backgroundView.backgroundColor = UIColor(red: 37/255, green: 211/255, blue: 102/255, alpha: 1)
+        backgroundView.image = UIImage(named: "RegisterBackground")
+        backgroundView.contentMode = .scaleAspectFill
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         
         titleLabel.text = "Register"
@@ -77,7 +78,7 @@ class RegisterView: UIView {
             backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
             backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
             
-            titleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 60),
+            titleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
 
             nameTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),

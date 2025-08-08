@@ -95,8 +95,6 @@
 				96CC5B932E1C58FC00D09AEE /* Sources */,
 				96CC5B942E1C58FC00D09AEE /* Frameworks */,
 				96CC5B952E1C58FC00D09AEE /* Resources */,
-				9633A4272E3694B300F64CC9 /* Run Script */,
-				9633A4282E3694F900F64CC9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -167,45 +165,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		9633A4272E3694B300F64CC9 /* Run Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run Script";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
-		};
-		9633A4282E3694F900F64CC9 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				openssl_grpc.framework,
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		96CC5B932E1C58FC00D09AEE /* Sources */ = {
