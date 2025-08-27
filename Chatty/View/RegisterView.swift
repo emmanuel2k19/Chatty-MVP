@@ -32,6 +32,11 @@ class RegisterView: UIView {
         backgroundView.contentMode = .scaleAspectFill
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        addGestureRecognizer(tapGesture)
+        
+        
         titleLabel.text = "Register"
         titleLabel.font = UIFont.boldSystemFont(ofSize: 30)
         titleLabel.textColor = .white
@@ -101,5 +106,9 @@ class RegisterView: UIView {
             registerButton.trailingAnchor.constraint(equalTo: emailTextField.trailingAnchor),
             registerButton.heightAnchor.constraint(equalToConstant: 50),
         ])
+    }
+    
+    @objc private func dismissKeyboard() {
+        endEditing(true)
     }
 }

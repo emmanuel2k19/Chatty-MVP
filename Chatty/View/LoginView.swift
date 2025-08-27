@@ -25,18 +25,22 @@ class LoginView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     // MARK: - View Setup
     private func setUpView() {
         backgroundImageView.image = UIImage(named: "Background")
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        addGestureRecognizer(tapGesture)
+        
         titleLabel.text = "Chatty"
         titleLabel.font = UIFont.boldSystemFont(ofSize: 34)
         titleLabel.textColor = .white
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-
+        
         emailTextField.placeholder = "Email"
         emailTextField.keyboardType = .emailAddress
         emailTextField.autocapitalizationType = .none
@@ -44,26 +48,26 @@ class LoginView: UIView {
         emailTextField.layer.cornerRadius = 8
         emailTextField.textColor = .black
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
-
+        
         passwordTextField.placeholder = "Password"
         passwordTextField.isSecureTextEntry = true
         passwordTextField.backgroundColor = .white
         passwordTextField.textColor = .black
         passwordTextField.layer.cornerRadius = 8
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
-
+        
         loginButton.setTitle("Log In", for: .normal)
         loginButton.backgroundColor = UIColor(red: 37/255, green: 211/255, blue: 102/255, alpha: 1)
         loginButton.setTitleColor(.white, for: .normal)
         loginButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
         loginButton.layer.cornerRadius = 8
         loginButton.translatesAutoresizingMaskIntoConstraints = false
-
+        
         registerButton.setTitle("Don't have an account? Register", for: .normal)
         registerButton.setTitleColor(.white, for: .normal)
         registerButton.titleLabel?.font = .systemFont(ofSize: 14)
         registerButton.translatesAutoresizingMaskIntoConstraints = false
-
+        
         // Add subviews
         addSubview(backgroundImageView)
         addSubview(titleLabel)
@@ -72,7 +76,7 @@ class LoginView: UIView {
         addSubview(loginButton)
         addSubview(registerButton)
     }
-
+    
     private func applyConstraints() {
         NSLayoutConstraint.activate([
             backgroundImageView.topAnchor.constraint(equalTo: topAnchor),
@@ -102,4 +106,9 @@ class LoginView: UIView {
             registerButton.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
+    
+    @objc private func dismissKeyboard() {
+        endEditing(true)
+    }
+    
 }

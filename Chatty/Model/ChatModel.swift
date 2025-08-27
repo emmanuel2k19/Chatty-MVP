@@ -19,9 +19,11 @@ struct ChatModel {
     let time: String
 }
 
-struct Conversations  {
+struct Conversations {
     let id: String
-    let otherUserName: String
+    let otherUserUID: String
+    let otherUserName: String   // was otherUserEmail in your code
+    let otherUserEmail: String
     let lastMessage: String
     let timestamp: Date
 }

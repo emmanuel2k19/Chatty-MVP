@@ -14,17 +14,19 @@ class ChatViewController: UIViewController {
     var conversationID: String
     var recipientEmail: String
     var messages: [Message] = []
-
-    init(conversationID: String, recipientEmail: String) {
+    var recipientUID: String
+    
+    init(conversationID: String, recipientEmail: String, recipientUID: String) {
         self.conversationID = conversationID
         self.recipientEmail = recipientEmail
+        self.recipientUID = recipientUID
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func loadView() {
         self.view = chatView
     }
@@ -32,65 +34,65 @@ class ChatViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = recipientEmail
-        setupKeyboardObservers()
         chatView.tableView.register(MessageCell.self, forCellReuseIdentifier: "MessageCell")
         observeMessages()
+        chatView.sendButton.addTarget(self, action: #selector(sendPressed), for: .touchUpInside)
+        chatView.tableView.dataSource = self
     }
-
-     @objc func sendPressed() {
-         guard let text = chatView.messageTextField.text, !text.isEmpty else { return }
+    
+    @objc func sendPressed() {
+        guard let text = chatView.messageTextField.text,
+              !text.trimmingCharacters(in: .whitespaces).isEmpty else { return }
         guard let currentUserID = Auth.auth().currentUser?.uid else {
             print("❌ No user logged in")
             return
         }
-
+        
         let db = Firestore.firestore()
+        let timestamp = Timestamp(date: Date())
+        
+        // 1️⃣ Append the message locally for instant UI update
+        let newMessage = Message(text: text, senderID: currentUserID, timestamp: timestamp.dateValue())
+        messages.append(newMessage)
+        
+        DispatchQueue.main.async {
+            self.chatView.tableView.reloadData()
+            let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+            self.chatView.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            self.chatView.messageTextField.text = ""
+        }
+        
+        // 2️⃣ Send the message to Firestore
         let messageData: [String: Any] = [
             "text": text,
             "senderID": currentUserID,
-            "timestamp": Timestamp(date: Date())
+            "timestamp": timestamp
         ]
-
+        
         db.collection("conversations")
             .document(conversationID)
             .collection("messages")
             .addDocument(data: messageData) { error in
                 if let error = error {
                     print("❌ Failed to send message:", error)
-                    return
                 }
-
-                self.chatView.messageTextField.text = ""
             }
-
-        // Update conversation metadata (last message & timestamp)
+        
+        // 3️⃣ Update conversation metadata
         db.collection("conversations")
             .document(conversationID)
             .setData([
+                "userIDs": [currentUserID, recipientUID],
                 "lastMessage": text,
-                "timestamp": Timestamp(date: Date())
+                "timestamp": timestamp
             ], merge: true)
     }
     
     
-    // MARK: - Keyboard Handling
-    func setupKeyboardObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
-                                               name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
-                                               name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
+@objc func dismissKeyboard() {
+    chatView.messageTextField.resignFirstResponder()
+}
 
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
-            view.frame.origin.y = -keyboardFrame.height + view.safeAreaInsets.bottom
-        }
-    }
-
-    @objc func keyboardWillHide(notification: NSNotification) {
-        view.frame.origin.y = 0
-    }
-    
     func observeMessages() {
         let db = Firestore.firestore()
         db.collection("conversations")
@@ -99,23 +101,28 @@ class ChatViewController: UIViewController {
             .order(by: "timestamp")
             .addSnapshotListener { [weak self] snapshot, error in
                 guard let self = self else { return }
-                
                 if let error = error {
                     print("❌ Error fetching messages:", error)
                     return
                 }
                 
-                self.messages = snapshot?.documents.compactMap { doc in
+                guard let documents = snapshot?.documents else { return }
+                
+                // Map Firestore documents to Message objects
+                self.messages = documents.compactMap { doc in
                     let data = doc.data()
                     let text = data["text"] as? String ?? ""
                     let senderID = data["senderID"] as? String ?? ""
                     let timestamp = (data["timestamp"] as? Timestamp)?.dateValue() ?? Date()
                     return Message(text: text, senderID: senderID, timestamp: timestamp)
-                } ?? []
+                }
                 
                 DispatchQueue.main.async {
                     self.chatView.tableView.reloadData()
-                   
+                    if !self.messages.isEmpty {
+                        let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+                        self.chatView.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                    }
                 }
             }
     }

@@ -6,6 +6,7 @@
 //
 import UIKit
 import Contacts
+import FirebaseFirestore
 
 class ContactCell: UITableViewCell {
     
@@ -54,3 +55,4 @@ class ContactCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
