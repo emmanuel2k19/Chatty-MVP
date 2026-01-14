@@ -60,11 +60,17 @@ class MessageCell: UITableViewCell {
     }
 
     private func updateConstraintsForSide() {
-        leadingConstraint.isActive = !isFromCurrentUser
-        trailingConstraint.isActive = isFromCurrentUser
+        if isFromCurrentUser {
+            leadingConstraint.isActive = false
+            trailingConstraint.isActive = true
+        } else {
+            trailingConstraint.isActive = false
+            leadingConstraint.isActive = true
+        }
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
+ 
